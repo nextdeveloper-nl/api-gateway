@@ -26,13 +26,13 @@ params:
 - token: Wld2pWduZW1hqgzbxSWDW5mhGzxZzD0I
 ```
 
-### Mechanism
+#### Mechanism
 The process manager will be responsible for scaling the application in the platform. This scaling is only limited with the modules that we manage on the same cluster. Like if we are managing the IaaS application and it requires scaling up, the process manager will make a request to the related platform to increase the number of docker instances running in the very same cluster.
 
 ## Events poller
 This is where we use Nginx & Nchan or OpenResty & Nchan as a event poller and distributor. This part of the application is basicly built on nchan and it will only forward or distribute events.
 
-### Mechanism
+#### Mechanism
 This is pretty straight forward. We get the request through HTTPS, WebSocket or other channels, then forward it to the related channel.
 
 The configuration file is saved in the nginx folder. Please take a look at that.
@@ -40,7 +40,7 @@ The configuration file is saved in the nginx folder. Please take a look at that.
 ## Request Forwarder
 This part will be responsible for keeping track of applications and application performance in terms of requests and responses. To be able to understand which application is taking too much requests and needs scaling.
 
-### Mechanism
+#### Mechanism
 We will be keeping track of past request, response data as well as time it takes to execute. From there we will be calculating average request per second and or maximum amount of request we can process in a second data. This will give us the idea to calculate each different requests cost. From that cost value we will be trying to understand the optimum cost per process and when the process starts to takes more time then we actually desire it will trigger the process manager to scale up the process.
 
 Likewise this request forwarder will also calculate if we need to scale down the number or processes of this more than enough.
